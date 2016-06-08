@@ -1,0 +1,10 @@
+{
+  "name": "Sample Python Celery",
+  "description": "Sample web application using the celery and flask",
+  "logo": "https://scalingo.com/logo.svg",
+  "repository": "https://github.com/Scalingo/sample-python-celery",
+  "website": "https://scalingo.com",
+  "env": {
+  },
+  "addons": ["scalingo-redis"]
+}
