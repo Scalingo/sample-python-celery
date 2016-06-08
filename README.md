@@ -71,6 +71,9 @@ git remote add scalingo git@scalingo.com:<name_of_your_app>.git
 git push scalingo master
 ```
 
+By default scalingo only launch your web container. To launch your worker container, you'll need to go to your dashboard and set your worker container amount to 1.
+
+
 And that's it!
 
 The application is running at this url: https://sample-python-celery.scalingo.io
