@@ -3,13 +3,13 @@ services:
   sample-python-celery:
     build: .
     ports:
-      - 3000:80
+      - 3000:3000
     working_dir: /usr/src/app
     volumes:
       - .:/usr/src/app
     environment:
       REDIS_URL: redis://redis:6379/
-    command: "python app.py"
+    command: "python ./app.py"
   worker:
     build: .
     working_dir: /usr/src/app
@@ -17,6 +17,7 @@ services:
       - .:/usr/src/app
     environment:
       REDIS_URL: redis://redis:6379/
+      C_FORCE_ROOT: "true"
     command: "celery worker --app=scal_task.app"
   redis:
     image: redis
