@@ -1,90 +1,41 @@
-Sample Crystal application
-======================================
+# Sample Python/Celery application
 
-Running Locally
----------------
+## Running Locally
 
-First, you need to have a working python installation :
-
-https://wiki.python.org/moin/BeginnersGuide/Download
-
-Next you'll need a working virtualenv installation :
 ```sh
-pip install virtualenv
-```
-
-### Install dependencies
-
-```
-virtualenv
-. bin/activate
-pip install -r requirements.txt
+$ docker-compose up
 ```
 
 ### Running
-This application is composed of two container:
-  * The celery server which take tasks and return result
-  * The flask server which run the webserver that send tasks to the celery server and display results
-  * A redis server
 
-#### Communication with redis
+This application is composed of three containers:
+  * The Celery server which takes tasks and return result
+  * The Flask server which runs the webserver that sends tasks to the Celery server and display results
+  * A Redis server
 
-You will need a working redis server.
-See http://redis.io/download
+The application will be available on http://localhost:3000
 
-Or with docker :
-```sh
-docker run -p 6379:6379 -d redis
-```
-And export your redis url in an environment variable :
-```sh
-export REDIS_URL=redis://
-```
-#### Running with foreman
-If you have foreman installed on your system you can launch the web server using :
-```sh
-foreman start
-```
+## Deploying on Scalingo
 
-#### Running manually
-If you don't have foreman installed you'll have to launch the two component manually :
-
-##### Start the celery server
-```sh
-celery worker --app=scal_task.app
-```
-
-##### Stat the web server
-```sh
-python app.py
-```
-
-The application will be avilable on http://localhost:5000
-
-Deploying on Scalingo
----------------------
-
-Create an application on https://scalingo.com with a redis addon, then:
+Create an application on https://scalingo.com with a Redis addon, then:
 
 ```
 git remote add scalingo git@scalingo.com:<name_of_your_app>.git
 git push scalingo master
 ```
 
-By default scalingo only launch your web container. To launch your worker container, you'll need to go to your dashboard and set your worker container amount to 1.
-
+By default Scalingo only launches your web container. To launch your worker container, you'll need to go to your dashboard and set your worker container amount to 1.
 
 And that's it!
 
-The application is running at this url: https://sample-python-celery.scalingo.io
+The application is running at this URL: https://sample-python-celery.scalingo.io
 
-Deploy in one click
--------------------
+## Deploy in one click
 
 [![Deploy to Scalingo](https://cdn.scalingo.com/deploy/button.svg)](https://my.scalingo.com/deploy)
 
-Links
------
-http://www.celeryproject.org/
-http://redis.io/
-http://flask.pocoo.org/
+## Links
+
+http://www.celeryproject.org
+https://Redis.io
+http://flask.pocoo.org
