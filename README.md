@@ -32,7 +32,7 @@ The application is running at this URL: https://sample-python-celery.scalingo.io
 
 ## Deploy in one click
 
-[![Deploy to Scalingo](https://cdn.scalingo.com/deploy/button.svg)](https://my.scalingo.com/deploy)
+[![Deploy to Scalingo](https://cdn.scalingo.com/deploy/button.svg)](https://my.osc-fr1.scalingo.com/deploy)
 
 ## Links
 
