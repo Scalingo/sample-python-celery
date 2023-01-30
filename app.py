@@ -2,18 +2,20 @@ import os
 from flask import Flask
 from flask import render_template
 from flask import request
-
-import scal_task
+from celery import Celery
 
 app = Flask(__name__)
 
+celery = Celery(app.name, broker=os.environ['REDIS_URL'])
+celery.conf.update(broker_url=os.environ['REDIS_URL'], result_backend=os.environ['REDIS_URL'])
+
+@celery.task
+def hello(name):
+    return "Hello "+name
+
 @app.route("/")
-def hello():
+def root():
     name = request.args.get('name', 'John Doe')
-    result = scal_task.hello.delay(name)
+    result = hello.delay(name)
     result.wait()
     return render_template('index.html', celery=result)
-
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 3000))
-    app.run(host='0.0.0.0', port=port)
